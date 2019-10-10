@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">\
+<link rel="stylesheet" href="todolist.css">
+</head>
+<body>
+
+<div id="myDIV" class="header">
+  <h1 class="h1">My To Do List</h1>
+  <input type="text" id="input" placeholder="Enter task here">
+  <span onclick="task()" class="btn">Add</span>
+  <hr>
+</div>
+
+<ul id="list">
+</ul>
+
+<script>
+var x = document.getElementsByTagName("LI");
+var i;
+for (i = 0; i < x.length; i++) {
+  var span = document.createElement("SPAN");
+  var txt = document.createTextNode("\u00D7");
+  span.className = "close";
+  span.appendChild(txt);
+  x[i].appendChild(span);
+}
+
+var close = document.getElementsByClassName("close");
+var i;
+for (i = 0; i < close.length; i++) {
+  close[i].onclick = function() {
+    var div = this.parentElement;
+    div.style.display = "none";
+    alert("Task");
+  }
+}
+
+function task() {
+  var li = document.createElement("li");
+  var inputValue = document.getElementById("input").value;
+  var t = document.createTextNode(inputValue);
+  li.appendChild(t);
+  if (inputValue === '') {
+    alert("No task added");
+  } else {
+    document.getElementById("list").appendChild(li);
+  }
+  document.getElementById("input").value = "";
+
+  var span = document.createElement("SPAN");
+  var txt = document.createTextNode("\u00D7");
+  span.className = "close";
+  span.appendChild(txt);
+  li.appendChild(span);
+
+  for (i = 0; i < close.length; i++) {
+    close[i].onclick = function() {
+      var div = this.parentElement;
+      div.style.display = "none";
+    }
+  }
+}
+</script>
+
+</body>
+</html>
